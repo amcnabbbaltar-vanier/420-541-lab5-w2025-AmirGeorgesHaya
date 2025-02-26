@@ -36,4 +36,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("VictoryScene"); // Use your new scene's name
     }
+
 }

@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHitBoxManagerScript : MonoBehaviour
+public class PlayerHitBoxManager : MonoBehaviour
 {
-        public Collider[] attackColliders;
     // Start is called before the first frame update
+    public Collider[] attackColliders;
     void Start()
     {
         foreach( Collider attackCollider in attackColliders)
         {
             attackCollider.enabled = false; // Disable collider at start
         }
-
+       
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-        public void EnableHitbox()
+    public void EnableHitbox()
     {
         foreach( Collider attackCollider in attackColliders)
         {
@@ -35,5 +30,4 @@ public class PlayerHitBoxManagerScript : MonoBehaviour
             attackCollider.enabled = false;
         }
     }
-
 }

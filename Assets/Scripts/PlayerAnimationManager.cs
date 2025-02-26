@@ -1,33 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerHitBoxManager : MonoBehaviour
+public class PlayerAnimationManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Collider[] attackColliders;
-    void Start()
+    private Animator animator;
+    private PlayerMovement movement;
+    private Rigidbody rb;
+    public void Start()
     {
-        foreach( Collider attackCollider in attackColliders)
-        {
-            attackCollider.enabled = false; // Disable collider at start
-        }
-       
+        animator = GetComponent<Animator>();
+        movement = GetComponent<PlayerMovement>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    public void EnableHitbox()
-    {
-        foreach( Collider attackCollider in attackColliders)
-        {
-            attackCollider.enabled = true;
-        }
-    }
 
-    public void DisableHitbox()
+    public void Update()
     {
-        foreach( Collider attackCollider in attackColliders)
-        {
-            attackCollider.enabled = false;
-        }
-    }
+       animator.SetFloat("CharacterSpeed", rb.velocity.magnitude);
+      animator.SetBool("IsFalling",!movement.IsFalling);
+      if (Input.GetButtonUp("Fire1"))
+      {
+        animator.SetTrigger("doRoll");
+      }
+      if (Input.GetButtonUp("Fire2"))
+      {
+        animator.SetTrigger("doPunch");
+      }
+  }
+
 }
